@@ -1,10 +1,10 @@
 <template>
-  <div class="flex align-middle z-10 h-10 md:mt-0">
+  <div class="flex align-middle h-10 md:mt-0">
 
-    <button class="z-20 h-full ml-6 mr-2 focus:outline-none"
+    <button class="h-full ml-6 mr-3 focus:outline-none"
             v-show="!searching" @click="showInput"
     >
-      <svg class="search-toggle fill-current h-6 w-6" viewBox="0 0 57.231 57.231" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+      <svg class="search-toggle fill-current h-5 w-5" viewBox="0 0 57.231 57.231" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
         <g>
           <g>
             <path d="M23.945,9.373c-1.652,0-2.992,1.341-2.992,2.992c0,1.654,1.34,2.992,2.992,2.992 c3.656,0,6.921,2.042,8.524,5.333c0.519,1.062,1.583,1.68,2.691,1.68c0.441,0,0.888-0.097,1.309-0.303 c1.486-0.723,2.104-2.514,1.379-4.001C35.235,12.704,29.906,9.373,23.945,9.373z"/>
@@ -15,7 +15,7 @@
     </button>
 
     <div v-show="searching" class="absolute right-0 w-full">
-      <button class="absolute right-0 h-10 z-20 ml-4 lg:pl-6 mr-3.5 focus:outline-none"
+      <button class="absolute right-0 h-10 ml-4 lg:pl-6 mr-3.5 focus:outline-none"
               @click="close"
       >
         <svg xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@
           id="search"
           v-model="query"
           ref="search"
-          class="h-10 w-1/2 rounded-lg placeholder-gray-400 dark:placeholder-neutral-400 bg-gray-200 dark:bg-neutral-900 outline-none px-4 pb-0 pt-px"
+          class="h-10 w-full sm:w-1/2 rounded-lg placeholder-gray-400 dark:placeholder-neutral-400 bg-gray-200 dark:bg-neutral-900 outline-none px-4 pb-0 pt-px"
           :class="{ 'transition-border': query }"
           autocomplete="off"
           name="search"
@@ -40,8 +40,8 @@
           @focusout="close"
         >
 
-        <div v-if="query" class="w-1/2 md:inset-auto text-left mb-4">
-          <div class="flex flex-col bg-gray-200 dark:bg-neutral-900 rounded-b-lg mx-4 md:mx-0">
+        <div v-if="query" class="w-full sm:w-1/2 md:inset-auto text-left mb-4">
+          <div class="flex flex-col bg-gray-200 dark:bg-neutral-900 rounded-b-lg mx-0">
             <a
               v-for="(result, index) in results"
               class="text-xl cursor-pointer p-4"
@@ -53,7 +53,7 @@
             >
               <span class="uppercase font-semibold">{{ result.item.title }}</span>
 
-              <span class="block text-gray-600 dark:text-neutral-300 font-serif normal-case font-thin text-sm my-1"
+              <span class="block text-gray-600 dark:text-neutral-300 normal-case text-sm my-1"
                     v-html="result.item.snippet"></span>
             </a>
 

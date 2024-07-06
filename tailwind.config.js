@@ -19,8 +19,9 @@ module.exports = {
                 primary: colors.rose,
             },
             fontFamily: {
-                sans: ['Montserrat', ...defaults.fontFamily.sans],
-                serif: ['Merriweather', ...defaults.fontFamily.serif],
+                // sans: ['Montserrat', ...defaults.fontFamily.sans],
+                // serif: ['Merriweather', ...defaults.fontFamily.serif],
+                mono: ['Fira Code', ...defaults.fontFamily.mono],
             },
             lineHeight: {
                 normal: '1.6',

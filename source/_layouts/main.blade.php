@@ -6,7 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="{{ $page->description ?? $page->siteDescription }}">
 
-        <meta property="og:title" content="{{ $page->title ? $page->title . ' | ' : '' }}{{ $page->siteName }}"/>
+        <meta property="og:title" content="{{ $page->title ?: $page->siteName }}"/>
         <meta property="og:type" content="{{ $page->type ?? 'website' }}" />
         <meta property="og:url" content="{{ $page->getUrl() }}"/>
         <meta property="og:description" content="{{ $page->description ?? $page->siteDescription }}" />
@@ -19,7 +19,7 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
 
         @if ($page->production)
             <!-- Insert analytics code here -->
@@ -54,11 +54,11 @@
                         @include('_nav.light-switch')
                     </div>
 
-                    @include('_nav.menu-toggle')
-
-                    <div class="hidden lg:block">
+                    <div class="lg:block">
                         @include('_nav.search-form')
                     </div>
+
+                    @include('_nav.menu-toggle')
                 </div>
             </div>
         </header>
@@ -70,8 +70,8 @@
         </main>
 
         <footer class="text-center text-xs mt-8 py-4" role="contentinfo">
-            <ul class="flex flex-col md:flex-row justify-center list-none font-sans uppercase">
-                <li class="md:mr-2">
+            <ul class="flex flex-col md:flex-row justify-center list-none">
+                <li class="mx-0">
                     {{ $page->siteName }} •
                     Built with <a href="https://jigsaw.tighten.co" title="Jigsaw by Tighten">Jigsaw</a>
                     and <a href="https://tailwindcss.com" title="Tailwind CSS, a utility-first CSS framework">Tailwind CSS</a>.

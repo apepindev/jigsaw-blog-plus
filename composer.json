@@ -1,5 +1,6 @@
 {
     "require": {
+        "php": ">=8.0 <8.3",
         "tightenco/jigsaw": "^1.7",
         "samdark/sitemap": "^2.2.1"
     },

@@ -8,38 +8,31 @@
              class="bg-gradient-to-br from-primary-300 to-primary-700 rounded-full h-32 w-32 md:h-52 md:w-52 bg-contain md:mx-auto my-auto">
 
         <div class="self-center ml-0 lg:ml-6 col-auto">
-            <p class="mb-6 text-3xl">Hi, I'm <strong>{{ $page->siteAuthor }}</strong>. 👋</p>
+            <p class="mb-6 mt-3 font-semibold text-4xl md:text-5xl">Hi, I'm {{ $page->siteAuthor }}. 👋</p>
 
-            <p class="mb-6">Create a short introduction about yourself here! Just a sentence or two
+            <p class="mb-3">Create a short introduction about yourself here! Just a sentence or two
                 for each paragraph will do.</p>
 
-            <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+            <p class="mb-6 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                 ut labore et dolore magna aliqua.</p>
         </div>
     </div>
 
-    <h2 class="mt-20 mb-12">Featured</h2>
+    @if ($posts->where('featured', true)->count() > 0)
+        <h2 class="mt-20 mb-12">Featured</h2>
+    @endif
 
     @foreach ($posts->where('featured', true) as $featuredPost)
-        <div class="lg:flex w-full mb-6">
+        <div class="md:flex w-full mb-6">
             @if ($featuredPost->cover_image)
-                <img src="{{ $featuredPost->cover_image }}" alt="{{ $featuredPost->title }} cover image" class="bg-contain mb-6 lg:mb-0 col-auto lg:w-1/3 mr-4">
+                <div class="flex content-center items-center overflow-hidden col-auto mb-4 md:mb-0 md:mr-4 md:w-1/3">
+                    <img src="{{ $featuredPost->cover_image }}" alt="{{ $featuredPost->title }} cover image" class="bg-cover">
+                </div>
             @endif
 
-            <div class="col-auto">
-                <h5 class="text-sm mt-0">
-                    {{ $featuredPost->getDate()->format('jS F, Y') }} • {{ $featuredPost->getReadTime() }}
-                </h5>
-
-                <h2 class="text-3xl mt-0 mb-1">
-                    <a href="{{ $featuredPost->getUrl() }}" title="Read {{ $featuredPost->title }}" class="font-bold">
-                        {{ $featuredPost->title }}
-                    </a>
-                </h2>
-
-                <p class="mt-0 mb-4">{!! $featuredPost->getExcerpt() !!}</p>
+            <div class="col-auto {{ $featuredPost->cover_image ? 'md:w-2/3' : '' }}">
+                @include('_components.post-preview-inline', ['post' => $featuredPost, 'isFeatured' => true])
             </div>
-
         </div>
 
         @if (! $loop->last)
